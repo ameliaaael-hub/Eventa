@@ -19,6 +19,7 @@ class Controlleracara extends Controller
         return view('event', compact('acara'));
     }
 
+
     public function create()
     {
         return view('create');
