@@ -19,7 +19,8 @@
 ![WhatsApp Image 2025-12-04 at 17 40 31_49ab5671](https://github.com/user-attachments/assets/3cf7dd20-9521-49ef-97ac-94617ccb7dbf)
 
 # Rencana Kerja TIM
-<img width="509" height="617" alt="Screenshot 2025-12-04 175357" src="https://github.com/user-attachments/assets/1c528731-9887-45c5-a148-7ca2646462e1" />
+<img width="555" height="674" alt="Screenshot 2025-12-04 175541" src="https://github.com/user-attachments/assets/634bd808-3545-4a25-8933-eb9694c4360a" />
+
 
 
 
