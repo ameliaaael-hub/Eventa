@@ -19,6 +19,8 @@ class Controlleracara extends Controller
         return view('event', compact('acara'));
     }
 
+    //typo bang
+
     public function create()
     {
         return view('create');
