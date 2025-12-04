@@ -22,8 +22,7 @@
 <img width="400" height="505" alt="Screenshot 2025-12-04 185747" src="https://github.com/user-attachments/assets/0525c06c-47e3-47c5-a83b-248c1f623b48" />
 
 
-
-
-
+# Link FIGMA:
+https://www.figma.com/design/NfSE7xUBCUyaB2XGkeeWZW/EVENTA?node-id=0-1&t=z6Ncs6g8VUGaP2yL-1
 
 
