@@ -9,14 +9,50 @@ use Illuminate\Support\Facades\Storage;
 
 class Controlleracara extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Hanya tampilkan event yang sudah approved
-        $acara = Acara::where('status', 'approved')
-            ->orderBy('Tanggal', 'desc')
-            ->get();
+        // Start with base query
+        $query = Acara::where('status', 'approved');
 
-        return view('event', compact('acara'));
+        // Filter by time range
+        $timeFilter = $request->get('time', 'upcoming');
+        $now = now();
+
+        if ($timeFilter === 'this_week') {
+            $query->whereBetween('Tanggal', [
+                $now->copy()->startOfWeek(),
+                $now->copy()->endOfWeek()
+            ]);
+        } elseif ($timeFilter === 'this_month') {
+            $query->whereBetween('Tanggal', [
+                $now->copy()->startOfMonth(),
+                $now->copy()->endOfMonth()
+            ]);
+        } else {
+            // upcoming - default, show future events
+            $query->where('Tanggal', '>=', $now->toDateString());
+        }
+
+        // Filter by category
+        $categoryFilter = $request->get('category');
+        if ($categoryFilter && $categoryFilter !== 'all') {
+            $query->where('Kategori', $categoryFilter);
+        }
+
+        // Sort by
+        $sortBy = $request->get('sort', 'latest');
+        if ($sortBy === 'oldest') {
+            $query->orderBy('Tanggal', 'asc');
+        } else {
+            $query->orderBy('Tanggal', 'desc');
+        }
+
+        $acara = $query->get();
+
+        // Get all categories for filter dropdown
+        $categories = Acara::where('status', 'approved')->distinct()->pluck('Kategori')->sort();
+
+        return view('event', compact('acara', 'categories', 'timeFilter', 'categoryFilter', 'sortBy'));
     }
 
 
