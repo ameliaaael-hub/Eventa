@@ -10,4 +10,7 @@
 5.	Manajemen Status Event: Sistem secara visual membedakan dan mengelola status setiap event (Menunggu Persetujuan, Akan Datang, Batal, Telah Selesai).
 6.	Interaksi Pengguna: Pengunjung dapat memberikan ulasan atau komentar pada event yang telah selesai.
 
-7.	
+# ![WhatsApp Image 2025-12-04 at 17 33 39_dbbf49af](https://github.com/user-attachments/assets/1ed36828-40d9-4f4d-a1bf-e3264c5ab74c)
+# ![WhatsApp Image 2025-12-04 at 17 34 05_00cc43e1](https://github.com/user-attachments/assets/b48be042-b1d5-47c8-b4b2-3e0013a25d74)
+
+
