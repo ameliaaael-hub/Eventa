@@ -11,6 +11,10 @@
 6.	Interaksi Pengguna: Pengunjung dapat memberikan ulasan atau komentar pada event yang telah selesai.
 
 # ![WhatsApp Image 2025-12-04 at 17 33 39_dbbf49af](https://github.com/user-attachments/assets/1ed36828-40d9-4f4d-a1bf-e3264c5ab74c)
-# ![WhatsApp Image 2025-12-04 at 17 34 05_00cc43e1](https://github.com/user-attachments/assets/b48be042-b1d5-47c8-b4b2-3e0013a25d74)
+# Admin ![WhatsApp Image 2025-12-04 at 17 34 05_00cc43e1](https://github.com/user-attachments/assets/b48be042-b1d5-47c8-b4b2-3e0013a25d74)
+# Pengunjung/User ![WhatsApp Image 2025-12-04 at 17 40 30_59ed952d](https://github.com/user-attachments/assets/5185649b-0204-47db-aff6-75152063f0ef)
+# Kontributor ![WhatsApp Image 2025-12-04 at 17 40 31_49ab5671](https://github.com/user-attachments/assets/3cf7dd20-9521-49ef-97ac-94617ccb7dbf)
+
+
 
 
