@@ -21,8 +21,7 @@
 # Rencana Kerja TIM
 <img width="555" height="674" alt="Screenshot 2025-12-04 175541" src="https://github.com/user-attachments/assets/634bd808-3545-4a25-8933-eb9694c4360a" />
 
-
-
-
+# Link FIGMA:
+https://www.figma.com/design/NfSE7xUBCUyaB2XGkeeWZW/EVENTA?node-id=0-1&t=z6Ncs6g8VUGaP2yL-1
 
 
