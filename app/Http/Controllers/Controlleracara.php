@@ -85,18 +85,26 @@ class Controlleracara extends Controller
         return redirect()->route('acara.index')->with('success', 'Event berhasil ditambahkan dan menunggu persetujuan admin');
     }
 
-    public function show($id)
+    /**
+     * Tampilkan detail acara tertentu.
+     * Menggunakan Route Model Binding untuk mendapatkan instance Acara.
+     */
+    public function show(Acara $acara)
     {
-        $acara = Acara::with('komentar')->findOrFail($id);
+        // Model binding otomatis menangani pencarian acara, 
+        // dan Acara::findOrFail($id) tidak lagi diperlukan.
+        $acara->load('komentar');
         $komentar = $acara->komentar()->orderBy('created_at', 'desc')->get();
 
         return view('show', compact('acara', 'komentar'));
     }
 
-    public function edit($id)
+    /**
+     * Tampilkan form edit.
+     * Menggunakan Route Model Binding.
+     */
+    public function edit(Acara $acara)
     {
-        $acara = Acara::findOrFail($id);
-
         // Check ownership
         if (Auth::user()->role !== 'admin' && $acara->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
@@ -105,10 +113,12 @@ class Controlleracara extends Controller
         return view('edit', compact('acara'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Proses update acara.
+     * Menggunakan Route Model Binding.
+     */
+    public function update(Request $request, Acara $acara)
     {
-        $acara = Acara::findOrFail($id);
-
         // Check ownership
         if (Auth::user()->role !== 'admin' && $acara->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
@@ -125,13 +135,15 @@ class Controlleracara extends Controller
         ]);
 
         if ($request->hasFile('Gambar')) {
+            // Hapus gambar lama
             if ($acara->Gambar) {
                 Storage::disk('public')->delete($acara->Gambar);
             }
+            // Simpan gambar baru
             $validated['Gambar'] = $request->file('Gambar')->store('events', 'public');
         }
 
-        // Reset status ke pending jika bukan admin
+        // Reset status ke pending jika bukan admin yang mengedit
         if (Auth::user()->role !== 'admin') {
             $validated['status'] = 'pending';
         }
@@ -141,10 +153,12 @@ class Controlleracara extends Controller
         return redirect()->route('acara.show', $acara->id)->with('success', 'Event berhasil diupdate');
     }
 
-    public function destroy($id)
+    /**
+     * Hapus acara.
+     * Menggunakan Route Model Binding.
+     */
+    public function destroy(Acara $acara)
     {
-        $acara = Acara::findOrFail($id);
-
         // Check ownership
         if (Auth::user()->role !== 'admin' && $acara->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action.');
