@@ -9,19 +9,20 @@
       <p class="max-w-xl text-lg mb-6 text-start">Stay updated with the latest academic talks, workshops, and social gatherings across universities. Whether you're here to network, learn, or have fun, there's something for everyone!</p>
       <a href="{{ route('about') }}" class="bg-pink-500 hover:bg-pink-600 px-6 py-2 rounded-full font-semibold">About Us</a>
     </div>  
-      <div class="bg-white text-gray-800 mx-auto mt-10 p-6 rounded-2xl shadow-lg w-full">
-      <div class="grid md:grid-cols-2 gap-4 text-left">
+      <form method="GET" action="{{ route('home') }}" class="bg-white text-gray-800 mx-auto mt-10 p-6 rounded-2xl shadow-lg w-full">
+      <div class="grid md:grid-cols-1 gap-4 text-left">
         <div>
-          <label class="font-semibold">Date:</label>
-          <input type="month" class="w-full mt-1 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
-        </div>
-        <div>
-          <label class="font-semibold">Event:</label>
-          <input type="text" placeholder="Find Event"
-            class="w-full mt-1 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
+          <label class="font-semibold">Filter by Date:</label>
+          <div class="flex gap-2 mt-1">
+            <input type="month" name="month" value="{{ $monthFilter }}" class="flex-1 border rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-400 outline-none">
+            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg transition">Filter</button>
+            @if($monthFilter)
+              <a href="{{ route('home') }}" class="bg-gray-400 hover:bg-gray-500 text-white font-semibold px-4 py-2 rounded-lg transition">Clear</a>
+            @endif
+          </div>
         </div>
       </div>
-    </div>
+    </form>
     </div>
       
     <!-- Category Section -->

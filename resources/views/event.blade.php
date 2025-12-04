@@ -6,22 +6,35 @@
             <h1 class="text-5xl font-bold mb-8">All Events</h1>
             
             <!-- Filter Section -->
-            <div class="flex justify-center gap-4 flex-wrap">
-                <select class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium focus:ring-2 focus:ring-purple-300 outline-none">
-                    <option>Upcoming</option>
-                    <option>This Week</option>
-                    <option>This Month</option>
+            <form method="GET" action="{{ route('acara.index') }}" class="flex justify-center gap-4 flex-wrap" id="filterForm">
+                <!-- Time Filter -->
+                <select name="time" class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium focus:ring-2 focus:ring-purple-300 outline-none cursor-pointer" onchange="document.getElementById('filterForm').submit()">
+                    <option value="upcoming" {{ $timeFilter === 'upcoming' ? 'selected' : '' }}>Upcoming</option>
+                    <option value="this_week" {{ $timeFilter === 'this_week' ? 'selected' : '' }}>This Week</option>
+                    <option value="this_month" {{ $timeFilter === 'this_month' ? 'selected' : '' }}>This Month</option>
                 </select>
-                <select class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium focus:ring-2 focus:ring-purple-300 outline-none">
-                    <option>Popular</option>
-                    <option>Most Viewed</option>
-                    <option>Trending</option>
+
+                <!-- Category Filter -->
+                <select name="category" class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium focus:ring-2 focus:ring-purple-300 outline-none cursor-pointer" onchange="document.getElementById('filterForm').submit()">
+                    <option value="all">All Categories</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat }}" {{ $categoryFilter === $cat ? 'selected' : '' }}>{{ $cat }}</option>
+                    @endforeach
                 </select>
-                <select class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium focus:ring-2 focus:ring-purple-300 outline-none">
-                    <option>Latest</option>
-                    <option>Oldest</option>
+
+                <!-- Sort Filter -->
+                <select name="sort" class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium focus:ring-2 focus:ring-purple-300 outline-none cursor-pointer" onchange="document.getElementById('filterForm').submit()">
+                    <option value="latest" {{ $sortBy === 'latest' ? 'selected' : '' }}>Latest</option>
+                    <option value="oldest" {{ $sortBy === 'oldest' ? 'selected' : '' }}>Oldest</option>
                 </select>
-            </div>
+
+                <!-- Reset Filter Button -->
+                @if($timeFilter !== 'upcoming' || $categoryFilter !== null || $sortBy !== 'latest')
+                    <a href="{{ route('acara.index') }}" class="bg-white text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
+                        Clear Filters
+                    </a>
+                @endif
+            </form>
 
             <!-- Add Event Button -->
             <div class="mt-8">

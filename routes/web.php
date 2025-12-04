@@ -16,12 +16,20 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Home Page
-Route::get('/', function () {
-    $upcomingEvents = Acara::where('status', 'approved')
-        ->where('Tanggal', '>=', Carbon::today())
-        ->orderBy('Tanggal', 'asc')
-        ->take(4)
-        ->get();
+Route::get('/', function (Illuminate\Http\Request $request) {
+    $monthFilter = $request->get('month'); // Format: YYYY-MM
+    
+    $upcomingQuery = Acara::where('status', 'approved')
+        ->where('Tanggal', '>=', Carbon::today());
+    
+    // If month filter is provided, apply it
+    if ($monthFilter) {
+        $monthStart = Carbon::createFromFormat('Y-m', $monthFilter)->startOfMonth();
+        $monthEnd = Carbon::createFromFormat('Y-m', $monthFilter)->endOfMonth();
+        $upcomingQuery->whereBetween('Tanggal', [$monthStart, $monthEnd]);
+    }
+    
+    $upcomingEvents = $upcomingQuery->orderBy('Tanggal', 'asc')->take(4)->get();
 
     $pastEvents = Acara::where('status', 'approved')
         ->where('Tanggal', '<', Carbon::today())
@@ -29,7 +37,7 @@ Route::get('/', function () {
         ->take(3)
         ->get();
 
-    return view('home', compact('upcomingEvents', 'pastEvents'));
+    return view('home', compact('upcomingEvents', 'pastEvents', 'monthFilter'));
 })->name('home');
 
 // Static Pages
